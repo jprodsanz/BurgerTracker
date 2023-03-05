@@ -11,39 +11,44 @@ import java.util.Optional;
 public class BurgerService {
     @Autowired
     private BurgerRepository burgerRepository;
-//    private final BurgerRepository burgerRepository;
-//    public BurgerService(BurgerRepository burgerRepository) {
-//        this.burgerRepository = burgerRepository;
-//    }
 
     // returns all the burgers
-        public List<Burger> allBurgers() {
-            return burgerRepository.findAll();
-        }
+    public List<Burger> allBurgers() {
+        return burgerRepository.findAll();
+    }
+
     // creates a burger
-        public Burger createBurger(Burger b) {
-            return burgerRepository.save(b);
-        }
+    public Burger createBurger(Burger b) {
+        return burgerRepository.save(b);
+    }
+
     // retrieves a burger
-        public Burger findBurger(Long id) {
-            Optional<Burger> optionalBurger = burgerRepository.findById(id);
-            if(optionalBurger.isPresent()) {
-                return optionalBurger.get();
-            } else {
-                return null;
-            }
-        }
+//        public Burger findBurger(Long id) {
+//            Optional<Burger> optionalBurger = burgerRepository.findById(id);
+//            if(optionalBurger.isPresent()) {
+//                return optionalBurger.get();
+//            } else {
+//                return null;
+//            }
+//        }
     // this method will update the burger
-        public Burger updateBurger(Burger updateBurger) {
-            return burgerRepository.save(updateBurger);
+    public Burger updateBurger(Burger updateBurger) {
+        return burgerRepository.save(updateBurger);
+    }
+
+    public void delete(Long id) {
+        burgerRepository.deleteById(id);
+    }
+
+    public Burger findOneById(Long id) {
+        Optional<Burger> optionalBurger = burgerRepository.findById(id);
+        if (optionalBurger.isPresent()) {
+            return optionalBurger.get();
+        } else {
+            return null;
         }
-    public void deleteBurger(Long id) {
-        Optional<Burger> deleteBurgerAction = burgerRepository.findById(id);
-        if (deleteBurgerAction.isPresent()) {
-            burgerRepository.deleteById(id);
-        }
-        else {
-            System.out.println("Error, can't delete burger");
-        }
+    }
+    public Burger update (Burger b) {
+        return burgerRepository.save(b);
     }
 }

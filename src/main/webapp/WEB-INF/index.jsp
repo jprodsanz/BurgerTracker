@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1 class="text-center"> Welcome to Burgerpledia  </h1>
-    <p> <a href="/burger/new">Add Burger</a></p>
+    <p> <a href="/burger/new" class="btn btn-outline-primary">Add Burger</a></p>
     <table class="table table-striped table-bordered text-center">
         <thead class="table-dark">
         <tr>
@@ -17,6 +17,7 @@
             <th scope="col">Restaurant</th>
             <th scope="col">Rating (out of 5) </th>
             <th scope="col">Notes </th>
+            <th scope="col">Actions </th>
         </tr>
         </thead>
         <tbody>
@@ -26,9 +27,22 @@
                 <td><c:out value="${burger.restName}"/></td>
                 <td><c:out value="${burger.rating}"/></td>
                 <td><c:out value="${burger.notes}"/></td
-                        <
             </tr>
+
+<%--            <td>--%>
+<%--                <a href="/burger/${burger.id}/delete" class="btn btn-danger">Delete</a>--%>
+<%--            </td>--%>
+
+            <td>
+                <form action="/burger/${burger.id}" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <a href="/burger/${burger.id}" class="btn btn-primary">Update</a>
+            </td>
+
         </c:forEach>
+
         </tbody>
     </table>
 </div>
